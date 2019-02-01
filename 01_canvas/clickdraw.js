@@ -32,8 +32,8 @@ c.addEventListener('click', function(e){
     //prevents the default action of the event from happening
     e.preventDefault();
 
-    var xcor = e.clientX - e.currentTarget.offsetLeft;
-    var ycor = e.clientY - e.currentTarget.offsetTop;
+    var xcor = e.offsetX;
+    var ycor = e.offsetY;
     if (mode.innerHTML == "box") {
           ctx.fillStyle = "#008B8B";
           ctx.fillRect(xcor, ycor, 40, 40);

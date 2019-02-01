@@ -23,8 +23,8 @@ console.log(ctx);
 
 // bind event handler to clear button
 document.getElementById("clear").addEventListener("click", function() {
+  ctx.beginPath();
   ctx.clearRect(0, 0, c.width, c.height);
-  bool = true;
 });
 
 // editting the canvas portion according to area of mouse click
@@ -32,23 +32,25 @@ c.addEventListener('click', function(e){
   //prevents the default action of the event from happening
   e.preventDefault();
 
-  var xcor = e.clientX - e.currentTarget.offsetLeft;
-  var ycor = e.clientY - e.currentTarget.offsetTop;
+  var xcor = e.offsetX;
+  var ycor = e.offsetY;
   ctx.fillStyle = "#008B8B";
   //beginPath() allows you to  discard the previous path and start a new one. If you don't have beginpath(),  you'd be appending more and more to the previous path. So the clear method would only clear temporarily and once you start adding more circles, it would just add on to the circles before.
-  ctx.beginPath();
-  // arc(xcor, ycor, radius, start angle, end angle)
-  console.log(bool);
-  if (bool){
-    bool = false;
-    ctx.moveTo(xcor,ycor);
-  } else {
-    console.log("SHOULD BE PRINTING LINES");
-    ctx.lineTo(xcor, ycor);
-    ctx.stroke();
-  }
-  ctx.arc(xcor, ycor, 7, 0, Math.PI * 2);
-  ctx.stroke();
-  ctx.fill();
+  dot(xcor, ycor)
+  line(xcor, ycor);
 
 } );
+
+var line = (x,y) => {
+  // move to that pos and draw the line
+  ctx.moveTo(x,y);
+  // makes line visible
+  ctx.stroke();
+}
+
+var dot = (x,y) => {
+  //ctx.ellipse(x, y, 2, 2, 0, 0, 2 * Math.PI);
+  ctx.arc(x, y, 7, 0, Math.PI * 2);
+
+  ctx.fill();
+}
