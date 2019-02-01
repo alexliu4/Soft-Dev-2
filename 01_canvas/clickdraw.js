@@ -29,6 +29,7 @@ document.getElementById("toggle").addEventListener("click", function() {
 
 // editting the canvas portion according to area of mouse click
 c.addEventListener('click', function(e){
+    //prevents the default action of the event from happening
     e.preventDefault();
 
     var xcor = e.clientX - e.currentTarget.offsetLeft;
