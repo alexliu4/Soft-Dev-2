@@ -45,14 +45,14 @@ c.addEventListener('click', function(e){
   dot(e.offsetX, e.offsetY);
 
   if (bool){
-    var xcor = e.offsetX;
-    var ycor = e.offsetY;
+    xcor = e.offsetX;
+    ycor = e.offsetY;
   }
   else {
     ctx.beginPath();
     ctx.moveTo(xcor,ycor);
-    var xcor = e.offsetX;
-    var ycor = e.offsetY;
+    xcor = e.offsetX;
+    ycor = e.offsetY;
     ctx.lineTo(xcor, ycor);
     ctx.stroke();
   }
