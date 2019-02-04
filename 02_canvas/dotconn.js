@@ -39,12 +39,10 @@ document.getElementById("clear").addEventListener("click", function(e) {
 // editting the canvas portion according to area of mouse click
 c.addEventListener('click', function(e){
 
-  var xcor = e.offsetX;
-  var ycor = e.offsetY;
   ctx.fillStyle = "#008B8B";
   //beginPath() allows you to  discard the previous path and start a new one. If you don't have beginpath(),  you'd be appending more and more to the previous path. So the clear method would only clear temporarily and once you start adding more circles, it would just add on to the circles before.
   ctx.beginPath();
-  dot(xcor, ycor)
+  dot(e.offsetX, e.offsetY);
 
   if (bool){
     var xcor = e.offsetX;
