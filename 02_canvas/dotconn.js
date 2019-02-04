@@ -19,6 +19,8 @@ console.log(ctx);
 // ctx.stroke();
 // creates a rectangle
 // ctx.fillRect( 50, 50, 100, 200);
+var xcor = 0;
+var ycor = 0;
 
 // bind event handler to clear button
 document.getElementById("clear").addEventListener("click", function(e) {
