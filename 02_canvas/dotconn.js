@@ -1,6 +1,6 @@
 // Alex liu
 // SoftDev2 pd6
-// K #02: I See a Red Door...
+// K02 -- ...Connecting the Dots
 // 2019-01-30
 
 // base code
@@ -25,6 +25,7 @@ console.log(ctx);
 document.getElementById("clear").addEventListener("click", function() {
   ctx.beginPath();
   ctx.clearRect(0, 0, c.width, c.height);
+  bool = true;
 });
 
 // editting the canvas portion according to area of mouse click
@@ -49,7 +50,7 @@ var line = (x,y) => {
 }
 
 var dot = (x,y) => {
-  //ctx.ellipse(x, y, 2, 2, 0, 0, 2 * Math.PI);
+  // ctx.ellipse(x, y, 2, 2, 0, 0, 2 * Math.PI);
   ctx.arc(x, y, 7, 0, Math.PI * 2);
 
   ctx.fill();
