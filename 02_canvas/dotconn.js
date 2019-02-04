@@ -8,7 +8,6 @@ var bool = new Boolean(true);
 var c = document.getElementById("playground");
 console.log(c);
 var ctx = c.getContext("2d");
-ctx.fillStyle = "#008B8B";
 console.log(ctx);
 // // Reset the current path
 // ctx.beginPath();
@@ -22,23 +21,42 @@ console.log(ctx);
 // ctx.fillRect( 50, 50, 100, 200);
 
 // bind event handler to clear button
-document.getElementById("clear").addEventListener("click", function() {
-  ctx.beginPath();
-  ctx.clearRect(0, 0, c.width, c.height);
-  bool = true;
+document.getElementById("clear").addEventListener("click", function(e) {
+  console.log(bool);
+  if (bool){
+    //prevents the default action of the event from happening
+    e.preventDefault();
+    bool = false;
+  }
+  else {
+    ctx.clearRect(0, 0, c.width, c.height);
+    bool = true;
+  }
 });
 
 // editting the canvas portion according to area of mouse click
 c.addEventListener('click', function(e){
-  //prevents the default action of the event from happening
-  e.preventDefault();
 
   var xcor = e.offsetX;
   var ycor = e.offsetY;
   ctx.fillStyle = "#008B8B";
   //beginPath() allows you to  discard the previous path and start a new one. If you don't have beginpath(),  you'd be appending more and more to the previous path. So the clear method would only clear temporarily and once you start adding more circles, it would just add on to the circles before.
+  ctx.beginPath();
   dot(xcor, ycor)
-  line(xcor, ycor);
+
+  if (bool){
+    var xcor = e.offsetX;
+    var ycor = e.offsetY;
+  }
+  else {
+    ctx.beginPath();
+    ctx.moveTo(xcor,ycor);
+    var xcor = e.offsetX;
+    var ycor = e.offsetY;
+    ctx.lineTo(xcor, ycor);
+    ctx.stroke();
+  }
+  bool = false;
 
 } );
 
