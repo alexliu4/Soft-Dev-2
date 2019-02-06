@@ -30,13 +30,16 @@ var dot = () => {
   // clear before
   ctx.clearRect(0, 0, c.width, c.height);
   ctx.beginPath();
+  // starting to shrink now
   if (radius > c.width / 2 || radius > c.height / 2) {
       radius_change = -1;
   }
+  // the growing
   else if (radius <= 0) {
       radius_change = 1;
       radius = 0;
   }
+  // creates the circles
   ctx.arc(c.width / 2, c.height / 2, radius, 0, Math.PI * 2);
   radius += radius_change;
   ctx.fill();
@@ -44,6 +47,7 @@ var dot = () => {
   requestID = window.requestAnimationFrame(dot);
 }
 
+// formatting of the circle created
 ctx.strokeStyle = "#336600";
 ctx.lineWidth = 5;
 ctx.fillStyle = "#d9ffb3";
