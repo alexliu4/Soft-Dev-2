@@ -1,10 +1,9 @@
 // Temporary Greatness- Alex liu, Brian Lee
 // SoftDev2 pd6
-// K02 -- ...Connecting the Dots
-// 2019-01-30
+// K03 -- They Lock Us In the Tower Whenever We Get Caught
+// 2019-02-05
 
 // base code
-var going = false;
 var c = document.getElementById("playground");
 console.log(c);
 var ctx = c.getContext("2d");
@@ -12,46 +11,39 @@ console.log(ctx);
 
 // important state variables
 var requestID;
-var radius;
+var radius = 0;
+var radius_change = 1;
 
 // bind event handler to stop button
 document.getElementById("stop").addEventListener("click", function(e) {
-  console.log("The Stop:");
-  console.log(going);
-  if (going){
-    // stop function
-    going = false;
-  }
-  else {
-    //prevents the default action of the event from happening
-    e.preventDefault();
-  }
+  window.cancelAnimationFrame(requestID);
 });
 
 // bind event handler to go button
 document.getElementById("go").addEventListener("click", function(e) {
-  console.log("The Go:");
-  console.log(going);
-  if (going){
-    //prevents the default action of the event from happening
-    e.preventDefault();
-  }
-  else {
-    radius = 1;
-    going = true;
-  }
+  dot();
+  going = true;
 });
 
 
 var dot = () => {
-  // ctx.ellipse(x, y, 2, 2, 0, 0, 2 * Math.PI);
   // clear before
   ctx.clearRect(0, 0, c.width, c.height);
-
+  ctx.beginPath();
+  if (radius > c.width / 2 || radius > c.height / 2) {
+      radius_change = -1;
+  }
+  else if (radius <= 0) {
+      radius_change = 1;
+      radius = 0;
+  }
   ctx.arc(c.width / 2, c.height / 2, radius, 0, Math.PI * 2);
-  radius++;
+  radius += radius_change;
   ctx.fill();
-  window.requestAnimationFrame(dot);
+  ctx.stroke();
+  requestID = window.requestAnimationFrame(dot);
 }
 
-dot();
+ctx.strokeStyle = "#336600";
+ctx.lineWidth = 5;
+ctx.fillStyle = "#d9ffb3";
