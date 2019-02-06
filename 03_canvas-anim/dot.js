@@ -8,6 +8,7 @@ var c = document.getElementById("playground");
 console.log(c);
 var ctx = c.getContext("2d");
 console.log(ctx);
+var going = false;
 
 // important state variables
 var requestID;
@@ -21,8 +22,11 @@ document.getElementById("stop").addEventListener("click", function(e) {
 
 // bind event handler to go button
 document.getElementById("go").addEventListener("click", function(e) {
-  dot();
-  going = true;
+  console.log(going);
+  if (! going){
+    dot();
+    going = true;
+  }
 });
 
 
