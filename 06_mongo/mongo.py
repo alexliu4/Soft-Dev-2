@@ -32,21 +32,11 @@ def get_zip_grade_score(zipcode, grade, score):
 
 def display_restaurants(collection):
     for i in collection:
-        # print (i['name'])
         print(i)
 
 
-print ("-----RESTAURANTS IN QUEENS-----\n")
-display_restaurants(get_borough("Queens"))
-
-print ("=====RESTAURANTS IN 10282=====\n")
-display_restaurants(get_zipcode("10282"))
-
-print ("=====RESTAURANTS IN 10282 WITH GRADE A=====\n")
-display_restaurants(get_zip_grade("10282", "A"))
-
-print ("=====RESTAURANTS IN 10282 WITH SCORE LOWER THAN 7=====\n")
-display_restaurants(get_zip_score("10282", 5))
-
-print ("=====RESTAURANTS IN 10282 WITH GRADE A AND SCORE GREATER THAN 20=====\n")
-display_restaurants(get_zip_grade_score("10282", "A", 20))
+display_restaurants(get_borough("Brooklyn"))
+display_restaurants(get_zipcode("11364"))
+display_restaurants(get_zip_grade("11364", "B"))
+display_restaurants(get_zip_score("11364", 5))
+display_restaurants(get_zip_grade_score("11364", "C", 20))
