@@ -10,7 +10,7 @@ Import: open the movies.json file, loads data within the json file, inserted int
 '''
 
 import pymongo
-server_address = "68.183.139.31"
+server_address = "167.99.158.108"
 connection = pymongo.MongoClient(server_address)
 db = connection.Liusers
 collection = db.movies
