@@ -5,13 +5,10 @@
 
 '''
 dataset name: Nobel Prizes
-
 description: Contains a record of all nobel prizes given
 in the years 1901-2018 in the categories: physics, chemistry, medicine,
 peace, economics, and literature.
-
 Link to dataset: http://api.nobelprize.org/v1/prize.json
-
 Import mechanism:
    1) saved the contents of the dataset in nobelprize.json
    2) created a function called insertData which opens nobelprize.json
@@ -25,13 +22,17 @@ Import mechanism:
 from pymongo import MongoClient
 import json
 
-SERVER_ADDR='142.93.126.17'
+SERVER_ADDR='206.189.75.99' # change to IP you want to start with
 client = MongoClient(SERVER_ADDR, 27017)
 db = client.huMONGOus
 collection = db.nobelprize
 
 def changeIP(ip):
     SERVER_ADDR = ip
+    print(ip)
+
+def getIP():
+    return SERVER_ADDR
 
 def insertData():
     '''
@@ -40,6 +41,7 @@ def insertData():
     '''
     with open('data/nobelprize.json') as f:
         data = json.load(f)
+        client.drop_database('nobelprize')
         collection.insert_many(data["prizes"])
 
 def find_year(year):
@@ -89,23 +91,24 @@ def find_topic(topic):
 
 # insertData() #already called, no need to call again
 
-print("###########################")
-print("testing find_year()")
-print("###########################")
-print(find_year("2018"))
-print("###########################")
-print("testing find_category()")
-print("###########################")
-print(find_category("physics"))
-print("###########################")
-print("testing find_year_category()")
-print("###########################")
-print(find_year_category("2018", "chemistry"))
-print("###########################")
-print("testing find_category_num()")
-print("###########################")
-print(find_category_num("peace", 3))
-print("###########################")
-print("testing find_topic()")
-print("###########################")
-print(find_topic("middle east"))
+
+# print("###########################")
+# print("testing find_year()")
+# print("###########################")
+# print(find_year("2018"))
+# print("###########################")
+# print("testing find_category()")
+# print("###########################")
+# print(find_category("physics"))
+# print("###########################")
+# print("testing find_year_category()")
+# print("###########################")
+# print(find_year_category("2018", "chemistry"))
+# print("###########################")
+# print("testing find_category_num()")
+# print("###########################")
+# print(find_category_num("peace", 3))
+# print("###########################")
+# print("testing find_topic()")
+# print("###########################")
+# print(find_topic("middle east"))
