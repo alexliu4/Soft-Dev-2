@@ -13,14 +13,14 @@ var pic=document.getElementById("vimage");
 var clear_button = document.getElementById("clear");
 
 // create var for clearing
-var is_clear = true;
+var cleared = true;
 
 //clear function
 clear_button.addEventListener('click', function(e) {
     while (pic.lastChild) {
 	pic.removeChild(pic.lastChild);
     }
-    is_clear = true;
+    cleared = true;
 })
 
 //instantiate x and y cor
@@ -41,7 +41,7 @@ pic.addEventListener('click', function(e){
     pic.appendChild(d);
 
     // draw line between circles
-    if(!is_clear){
+    if(!cleared){
 	var l = document.createElementNS(
 	    "http://www.w3.org/2000/svg", "line"
 	);
@@ -54,7 +54,7 @@ pic.addEventListener('click', function(e){
 	pic.appendChild(l);
     }
     else{
-	is_clear = false;
+	cleared = false;
     }
     lastx = e.offsetX;
     lasty = e.offsetY
