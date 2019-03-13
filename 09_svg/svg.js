@@ -49,7 +49,7 @@ pic.addEventListener('click', function(e){
   l.setAttribute("x2", e.offsetX);
 	l.setAttribute("y1", prev_y);
 	l.setAttribute("y2", e.offsetY);
-	l.setAttribute("stroke-width", 2);
+	l.setAttribute("stroke-width", 3);
 	l.setAttribute("stroke", "black");
 	pic.appendChild(l);
     }
