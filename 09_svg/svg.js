@@ -46,8 +46,8 @@ pic.addEventListener('click', function(e){
 	    "http://www.w3.org/2000/svg", "line"
 	);
 	l.setAttribute("x1", prev_x);
+  l.setAttribute("x2", e.offsetX);
 	l.setAttribute("y1", prev_y);
-	l.setAttribute("x2", e.offsetX);
 	l.setAttribute("y2", e.offsetY);
 	l.setAttribute("stroke-width", 2);
 	l.setAttribute("stroke", "black");
