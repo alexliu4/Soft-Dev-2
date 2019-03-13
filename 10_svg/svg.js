@@ -23,10 +23,6 @@ clear_button.addEventListener('click', function(e) {
     cleared = true;
 })
 
-//instantiate x and y cor
-var lastx = 0;
-var lasty = 0;
-
 //connect dots when pic is clicked
 pic.addEventListener('click', function(e){
     var c = document.createElementNS(
@@ -40,22 +36,35 @@ pic.addEventListener('click', function(e){
     c.setAttribute("fill", "blue");
     pic.appendChild(c);
 
-    // draw line between circles
-    if(!cleared){
-	var l = document.createElementNS(
-	    "http://www.w3.org/2000/svg", "line"
-	);
-	l.setAttribute("x1", lastx);
-  l.setAttribute("x2", e.offsetX);
-	l.setAttribute("y1", lasty);
-	l.setAttribute("y2", e.offsetY);
-	l.setAttribute("stroke-width", 3);
-	l.setAttribute("stroke", "black");
-	pic.appendChild(l);
-    }
-    else{
-	cleared = false;
-    }
-    lastx = e.offsetX;
-    lasty = e.offsetY
 })
+
+var movement = function() {
+  ctx.clearRect(0, 0, c.width, c.height);
+  window.cancelAnimationFrame(requestID);
+
+  var rectWidth = 100;
+  var rectHeight = 50;
+
+  var rectX = Math.floor(Math.random() * (c.width - rectWidth));
+  var rectY = Math.floor(Math.random() * (c.height - rectHeight));
+
+  var xVel = 1;
+  var yVel = 1;
+
+  var logo = new Image();
+  logo.src = "logo_dvd.jpg";
+  var dvdLogo = function() {
+    requestID = window.requestAnimationFrame(dvdLogo);
+    ctx.drawImage(logo, rectX, rectY, rectWidth, rectHeight);
+    rectX += xVel; rectY += yVel;
+    if (rectX + rectWidth >= c.width || rectX <= 0) {
+      xVel *= -1;
+    }
+    if (rectY + rectHeight >= c.height || rectY <= 0) {
+      yVel *= -1;
+    }
+  }
+  dvdLogo();
+}
+
+document.getElementById("move").addEventListener("click", movement);
