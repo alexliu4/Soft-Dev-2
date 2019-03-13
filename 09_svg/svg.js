@@ -24,8 +24,8 @@ clear_button.addEventListener('click', function(e) {
 })
 
 //instantiate x and y cor
-var prev_x = 0;
-var prev_y = 0;
+var lastx = 0;
+var lasty = 0;
 
 //connect dots when pic is clicked
 pic.addEventListener('click', function(e){
@@ -45,9 +45,9 @@ pic.addEventListener('click', function(e){
 	var l = document.createElementNS(
 	    "http://www.w3.org/2000/svg", "line"
 	);
-	l.setAttribute("x1", prev_x);
+	l.setAttribute("x1", lastx);
   l.setAttribute("x2", e.offsetX);
-	l.setAttribute("y1", prev_y);
+	l.setAttribute("y1", lasty);
 	l.setAttribute("y2", e.offsetY);
 	l.setAttribute("stroke-width", 3);
 	l.setAttribute("stroke", "black");
@@ -56,6 +56,6 @@ pic.addEventListener('click', function(e){
     else{
 	is_clear = false;
     }
-    prev_x = e.offsetX;
-    prev_y = e.offsetY
+    lastx = e.offsetX;
+    lasty = e.offsetY
 })
