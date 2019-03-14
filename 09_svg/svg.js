@@ -27,7 +27,7 @@ clear_button.addEventListener('click', function(e) {
 var lastx = 0;
 var lasty = 0;
 
-//connect dots when pic is clicked
+//create the dot and connects them
 pic.addEventListener('click', function(e){
     var c = document.createElementNS(
 	"http://www.w3.org/2000/svg", "circle"
