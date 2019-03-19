@@ -19,6 +19,7 @@ var clear_button = document.getElementById("clear");
 var cleared = true;
 
 var clear = function(e){
+  window.cancelAnimationFrame(requestID)
   while (pic.lastChild) {
     // console.log(pic.lastChild);
     pic.removeChild(pic.lastChild);
@@ -69,7 +70,6 @@ pic.addEventListener('click', function(e){
 //                  MOVING DOT SECTION
 
 var movement = function() {
-
   var c = document.createElementNS("http://www.w3.org/2000/svg", "circle");
   window.cancelAnimationFrame(requestID);
 
@@ -94,9 +94,6 @@ var movement = function() {
       yVel = parseInt(child[i].getAttribute("yVel"));
       // console.log(child[i].getAttributeNode("cy").value);
 
-      var fill_type = child[i].getAttributeNode("fill").value;
-
-
       // add to xcor or ycor (or subtract to bounce)
       // rectX += xVel; rectY += yVel;
       if (rectX + 10 >= rectWidth || rectX - 10 <= 0) {
@@ -119,11 +116,9 @@ var movement = function() {
 
   }
   redraw();
-
 }
 
 var together = function() {
-
   var c = document.createElementNS("http://www.w3.org/2000/svg", "circle");
   window.cancelAnimationFrame(requestID);
 
@@ -156,12 +151,63 @@ var together = function() {
 
   }
   redraw();
+}
 
+var disco = function() {
+  window.cancelAnimationFrame(requestID);
+  var c = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+
+  var rectWidth = parseInt(pic.clientWidth);
+  var rectHeight = parseInt(pic.clientHeight);
+
+  var recolor = function() {
+    // addition or bounce depending
+    requestID = window.requestAnimationFrame(recolor);
+
+    var child = pic.children;
+    var i;
+    for (i = 0; i < child.length; i++) {
+      var child = pic.children;
+
+      var rectX = parseInt(child[i].getAttributeNode("cx").value);
+      xVel = parseInt(child[i].getAttribute("xVel"));
+      // console.log(child[i].getAttributeNode("cx").value);
+
+      var rectY = parseInt(child[i].getAttributeNode("cy").value);
+      yVel = parseInt(child[i].getAttribute("yVel"));
+      // console.log(child[i].getAttributeNode("cy").value);
+
+      // add to xcor or ycor (or subtract to bounce)
+      // rectX += xVel; rectY += yVel;
+      if (rectX + 10 >= rectWidth || rectX - 10 <= 0) {
+        xVel *= -1;
+        // console.log(xVel);
+      }
+      if (rectY + 10  >= rectHeight || rectY - 10 <= 0) {
+        yVel *= -1;
+        // console.log(yVel);
+      }
+
+      child[i].setAttribute("xVel", xVel);
+      child[i].setAttribute("yVel", yVel);
+
+      child[i].setAttribute("cx", rectX + xVel);
+      // console.log(rectX.toString());
+      child[i].setAttribute("cy", rectY + yVel);
+      // console.log(rectY.toString());
+
+      child[i].setAttribute("fill", '#'+(0x1000000+(Math.random())*0xffffff).toString(16).substr(1,6));
+    }
+
+  }
+  recolor();
 }
 
 document.getElementById("move").addEventListener("click", movement);
 
 document.getElementById("together").addEventListener("click", together);
+
+document.getElementById("disco").addEventListener("click", disco);
 
 document.getElementById("stop").addEventListener("click", function() {
     window.cancelAnimationFrame(requestID)
