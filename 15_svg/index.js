@@ -29,7 +29,7 @@ var margin = {top: 70, right: 70, bottom: 70, left: 70},
     height = 500 - margin.top - margin.bottom;
 
 var x = d3.scaleLinear()
-    .domain([0, d3.max(dataset, function(d) {return d[0];})])
+    .domain([2004, d3.max(dataset, function(d) {return d[0];})])
     .range([ 0, width ]);
 
 var y = d3.scaleLinear()
