@@ -31,7 +31,7 @@ def fib(n):
         return 1
     else:
         return fib(n - 1) + fib(n - 2)
-        
+
 fib = memoize(fib)
 print (fib(1))
 print (fib(5))
